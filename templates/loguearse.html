@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+
+  <form method="post" action="{{ url_for('login') }}">
+    <p> Ingresa tu cedula <p>
+    <p><input name="cedula" type="text"></p>
+    <p> Ingresa tu contraseña </p>
+    <p><input name="password" type="password"></p>
+
+    <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Entrar</button>
+</form>
+
+
+    
+    
+    <script>
+      /*document.getElementById('login').addEventListener('click',(event) => {
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+          if (this.status == 200){
+              console.log("petición enviada con exito");
+            }
+        };
+        
+        var p = new FormData();
+        p.append('cedula',document.getElementById('cedula').value);
+        p.append('password',document.getElementById('contraseña').value);
+        xhttp.open("POST","/pruebas",true);
+        xhttp.send(p);
+
+      });*/
+    </script>
+    
+</body>
+</html>

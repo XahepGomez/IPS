@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Información COVID-19</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+crossorigin=""/>   
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+    integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+    crossorigin="">
+</script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-blue-grey w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <form method="post" action="{{ url_for('irInicio') }}">
+        <button class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Volver pefil</button>
+    </form>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-white w3-center w3-margin-top" style="padding:20px 10px"><br><br>
+  <h1 class="w3-margin w3-jumbo">Información</h1> 
+  <img src="https://i.ibb.co/XVGDy1Z/Logo.png">
+</header>
+
+
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center">¿Qué puedo hacer para protegerme?</h4>
+          <p>Lávese las manos a fondo y con frecuencia usando un desinfectante a base de alcohol o con agua y jabón </p>
+          <p>Mantenga una distancia mínima de un metro entre usted y los demás </p>
+          <p>Evite ir a lugares concurridos </p>
+          <p>Hacer uso de las mascarillas médicas</p>
+            <img src= https://www.bupasalud.com/sites/default/files/styles/large/public/articulos/2020-01/fotos/coronavirus.png?itok=pP4-pWaZ alt="-Logo" class="w3-center w3-square w3-margin-left w3-margin-right" style="width:255px">
+         <hr>
+        </div>
+      </div>
+      <br>
+
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center">¿Cómo se propaga la COVID‑19?</h4>
+          <p>Una persona puede contraer la COVID‑19 por contacto con otra que esté infectada por el virus. 
+            La enfermedad se propaga principalmente de persona a persona a través de las gotículas que salen despedidas de la nariz o la boca de una persona infectada al toser, 
+            estornudar o hablar. Estas gotículas son relativamente pesadas, no llegan muy lejos y caen rápidamente al suelo. 
+            Una persona puede contraer la COVID‑19 si inhala las gotículas procedentes de una persona infectada por el virus.</p>
+            <img src= https://alcaldiatunja.micolombiadigital.gov.co/sites/alcaldiatunja/content/files/000744/37155_en-tunja-no-hay-casos-de-covid19--o-coronavirus_1024x600.jpg alt="-Logo" class="w3-center w3-square w3-margin-left w3-margin-right" style="width:255px">
+         <hr>
+        </div>
+      </div>
+      <br>
+      
+    <!-- End Left Column -->
+    </div>
+    
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+
+      <div class="w3-container w3-card w3-white w3-round w3-margin-right w3-margin-left"><br>
+        <img src= https://i.ibb.co/HFnnttD/Logo.png alt="-Logo" class="w3-right w3-square w3-margin-right " style="width:70px">
+        <h4>¿Qué es el coronavirus?</h4>
+        <hr class="w3-clear">
+        <p>
+          Los coronavirus son una extensa familia de virus que pueden causar enfermedades tanto en animales como en humanos. 
+            En los humanos, se sabe que varios coronavirus causan infecciones respiratorias que pueden ir desde el resfriado común hasta enfermedades más graves 
+            como el síndrome respiratorio de Oriente Medio (MERS) y el síndrome respiratorio agudo severo (SRAS).
+            El coronavirus que se ha descubierto más recientemente causa la enfermedad por coronavirus COVID-19.
+        <p>
+      </div>
+
+      <div class="w3-container w3-card w3-white w3-round w3-margin-right w3-margin-left w3-margin-top w3-margin-bottom"><br>
+        <img src= https://www.ilga-lac.org/wp-content/uploads/2020/03/coronavirus.jpg alt="-Logo" class= " w3-center w3-square w3-margin-bottom" style="width:680px;height:500px ;">
+      </div>
+
+
+      <div class="w3-container w3-card w3-white w3-round w3-margin-right w3-margin-left"><br>
+        <h4>¿Qué es la COVID-19?</h4>
+        <hr class="w3-clear">
+        <p>
+          La COVID‑19 es la enfermedad infecciosa causada por el coronavirus que se ha descubierto más recientemente.
+          Tanto este nuevo virus como la enfermedad que provoca eran desconocidos antes de que estallara el brote en Wuhan (China) en diciembre de 2019. 
+          Actualmente la COVID‑19 es una pandemia que afecta a muchos países de todo el mundo.
+        <p>
+      </div>
+      
+    <!-- End Middle Column -->
+    </div>
+    
+    <!-- Right Column -->
+    <div class="w3-col m2">
+      <div class="w3-card w3-round w3-white w3-left-align">
+        <div class="w3-container">
+          <h4 class="w3-center">Síntomas</h4>
+          <p> Tos</p>
+          <p>Fiebre</p>
+          <p>Escalofríos</p>
+          <p>Dolor muscular</p>
+          <p>Dolor de garganta</p>
+        </div>
+      </div>
+      <br>
+
+      <div class="w3-card w3-round w3-white w3-left-align">
+        <div class="w3-container">
+          <h4 class="w3-center">¿Cuándo debo buscar atención médica?</h4>
+          <p> Dificultad para respirar</p>
+          <p>Dolor o presión persistente en el pecho</p>
+          <p>Confusión</p>
+          <p>Incapacidad de despertarse o permanecer despierto </p>
+          <p>Coloración azulada en los labios o el rostro </p>
+        </div>
+      </div>
+      <br>
+      
+      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+        <img src= https://i.ibb.co/YXqrFqm/Face.png alt="-Logo" class="w3-center w3-square w3-margin-right w3-margin-left" style="width:180px">
+      </div>
+      <br>
+      
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+<!-- End Page Container -->
+</div>
+<br>
+
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>
+
+
+
