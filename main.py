@@ -145,7 +145,7 @@ def incio():
             if session[i] == k.cedula:
                 print("secretaria")
                 h = Secretaria.query.filter_by(cedula = session["cedula_secretaria"]).first()
-                return render_template("perfil_secretaria.html")
+                return render_template("perfil_secretaria.html",secretaria = h)
 
     for i in session:
         for k in medico:
@@ -154,7 +154,7 @@ def incio():
                 h = Medico.query.filter_by(cedula = session["cedula_medico"]).first()
                 return 'Perfil médico'
 
-    return 'Inicio de la página'
+    return render_template("base_sin_loguear.html")
 
 @app.route("/logout",methods=['GET','POST'])
 def logout():
@@ -188,11 +188,12 @@ def login():
         
         return redirect("/")    
 
-    return render_template("loguearse.html")
+    return render_template("login.html")
 
 @app.route("/registroPaciente",methods=['GET','POST'])
 def registroPaciente():
     if request.method == 'POST':
+
         new_paciente = Paciente(nombre = request.form["nombre"], 
                                 cedula = request.form["cedula"], 
                                 contraseña = request.form["password"], 
@@ -205,7 +206,16 @@ def registroPaciente():
         
         return '200'
 
-    return render_template("registrar_paciente.html")
+
+    secretaria = Secretaria.query.all()
+    condicion = "vacia"
+    for i in session:
+        for k in secretaria:
+            if session[i] == k.cedula:
+                print("secretaria")
+                condicion = "secretaria"
+
+    return render_template("registrar_paciente.html", session = condicion)
 
 @app.route("/registroSecretaria",methods=['GET','POST'])
 def registroSecretaria():
@@ -534,6 +544,10 @@ def irCovid():
     if request.method == "POST":
         return redirect("/COVID")
 
+@app.route("/irRegistrosPaciente",methods=["GET","POST"])
+def irRegistrosPaciente():
+    if request.method == "POST":
+        return redirect("/registroPaciente")
 #------------------------------------
 
 
