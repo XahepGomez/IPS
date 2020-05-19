@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta id="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar médico</title>
-</head>
-<body>
+{% extends "base_registros.html" %}
+
+
+{% block content %}
+
 
   <p> Ingrese el nombre del médico <p>
   <p><input id="nombre" type="text"></p>
@@ -13,104 +10,108 @@
   <p><input id="cedula" type="text"></p>
   <p>Ingresa la contraseña del médico</p>
   <input id="password" type="password" size=15 name="clave" onkeyup="muestra_seguridad_clave(this.value)">
+  <p></p>
   <i> Grado de seguridad:</i> <input id="seguridad" type="text" value = "0 %"></input>
   <p> Ingresa la correo del médico </p>
   <p><input id="correo" type="text"></p>
-
-  <table class="egt">
-    <tr>
-      <th scope="row">Día</th>
-      
-      <th>Lunes</th>
-        <th>Martes</th>
-        <th>Miercoles</th>
-        <th>Jueves</th>
-        <th>Viernes</th>
-        <th>Sabado</th>
-        <th>Domingo</th>
-      </tr>
-      
+  <div class="w3-center">
+    <table class="egt">
       <tr>
-      
-        <th>Selecciona --></th>
-        <td><input type="checkbox" id="LunesBox"></td>
-        <td><input type="checkbox" id="MartesBox" ></td>
-        <td><input type="checkbox" id="MiercolesBox" ></td>
-        <td><input type="checkbox" id="JuevesBox" ></td>
-        <td><input type="checkbox" id="ViernesBox" ></td>
-        <td><input type="checkbox" id="SabadoBox" ></td>
-        <td><input type="checkbox" id="DomingoBox" ></td>
-      
-      </tr>
-      
-      <tr>
-      
-        <th>Horario del día</th>
-        <td>
-          <select id="LunesList">
-            <option value="1">6:00 - 14:00</option> 
-            <option value="2">14:00 - 18:00</option> 
-            <option value="3">6:00 - 18:00</option>
-          </select>
-        </td>
-
-        <td>
-          <select id="MartesList">
-            <option value="1">6:00 - 14:00</option> 
-            <option value="2">14:00 - 18:00</option> 
-            <option value="3">6:00 - 18:00</option>
-          </select>
-        </td>
-
-        <td>
-          <select id="MiercolesList">
-            <option value="1">6:00 - 14:00</option> 
-            <option value="2">14:00 - 18:00</option> 
-            <option value="3">6:00 - 18:00</option>
-          </select>
-        </td>
-
-        <td>
-          <select id="JuevesList">
-            <option value="1">6:00 - 14:00</option> 
-            <option value="2">14:00 - 18:00</option> 
-            <option value="3">6:00 - 18:00</option>
-          </select>
-        </td>
-
-        <td>
-          <select id="ViernesList">
-            <option value="1">6:00 - 14:00</option> 
-            <option value="2">14:00 - 18:00</option> 
-            <option value="3">6:00 - 18:00</option>
-          </select>
-        </td>
-
-        <td>
-          <select id="SabadoList">
-            <option value="1">6:00 - 14:00</option> 
-            <option value="2">14:00 - 18:00</option> 
-            <option value="3">6:00 - 18:00</option>
-          </select>
-        </td>
+        <th scope="row">Día</th>
         
-        <td>
-          <select id="DomingoList">
-            <option value="1">6:00 - 14:00</option> 
-            <option value="2">14:00 - 18:00</option> 
-            <option value="3">6:00 - 18:00</option>
-          </select>
-        </td>
-      
-      </tr>
+        <th>Lunes</th>
+          <th>Martes</th>
+          <th>Miercoles</th>
+          <th>Jueves</th>
+          <th>Viernes</th>
+          <th>Sabado</th>
+          <th>Domingo</th>
+        </tr>
+        
+        <tr>
+        
+          <th>Selecciona --></th>
+          <td><input type="checkbox" id="LunesBox"></td>
+          <td><input type="checkbox" id="MartesBox" ></td>
+          <td><input type="checkbox" id="MiercolesBox" ></td>
+          <td><input type="checkbox" id="JuevesBox" ></td>
+          <td><input type="checkbox" id="ViernesBox" ></td>
+          <td><input type="checkbox" id="SabadoBox" ></td>
+          <td><input type="checkbox" id="DomingoBox" ></td>
+        
+        </tr>
+        
+        <tr>
+        
+          <th>Horario del día</th>
+          <td>
+            <select id="LunesList">
+              <option value="1">6:00 - 14:00</option> 
+              <option value="2">14:00 - 18:00</option> 
+              <option value="3">6:00 - 18:00</option>
+            </select>
+          </td>
+  
+          <td>
+            <select id="MartesList">
+              <option value="1">6:00 - 14:00</option> 
+              <option value="2">14:00 - 18:00</option> 
+              <option value="3">6:00 - 18:00</option>
+            </select>
+          </td>
+  
+          <td>
+            <select id="MiercolesList">
+              <option value="1">6:00 - 14:00</option> 
+              <option value="2">14:00 - 18:00</option> 
+              <option value="3">6:00 - 18:00</option>
+            </select>
+          </td>
+  
+          <td>
+            <select id="JuevesList">
+              <option value="1">6:00 - 14:00</option> 
+              <option value="2">14:00 - 18:00</option> 
+              <option value="3">6:00 - 18:00</option>
+            </select>
+          </td>
+  
+          <td>
+            <select id="ViernesList">
+              <option value="1">6:00 - 14:00</option> 
+              <option value="2">14:00 - 18:00</option> 
+              <option value="3">6:00 - 18:00</option>
+            </select>
+          </td>
+  
+          <td>
+            <select id="SabadoList">
+              <option value="1">6:00 - 14:00</option> 
+              <option value="2">14:00 - 18:00</option> 
+              <option value="3">6:00 - 18:00</option>
+            </select>
+          </td>
+          
+          <td>
+            <select id="DomingoList">
+              <option value="1">6:00 - 14:00</option> 
+              <option value="2">14:00 - 18:00</option> 
+              <option value="3">6:00 - 18:00</option>
+            </select>
+          </td>
+        
+        </tr>
+  
+    </table>
 
-  </table>
+  </div>
+  
   
   <p></p>
   <form method="post" action="{{ url_for('irLogin') }}">
     <button id = "registrar">Registrar</button>
   </form>
-
+  <p></p>
     <script>
         
         function muestra_seguridad_clave(clave){
@@ -252,5 +253,7 @@
             }
         });
     </script>
-</body>
-</html>
+
+
+
+{% endblock %}

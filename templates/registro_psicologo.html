@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta id="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro Psicologo(a)</title>
-</head>
-<body>
+{% extends "base_registros.html" %}
+
+
+{% block content %}
+
 
   <p> Ingrese el nombre del psicologo <p>
   <p><input id="nombre" type="text"></p>
@@ -252,5 +249,6 @@
             }
         });
     </script>
-</body>
-</html>
+
+{% endblock %}
+   
