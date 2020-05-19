@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+</head>
+<body>
+
+      <p>dhskdaksh</p>
+      <button id="boton">Hola</button>
+  
+    
+    <script>
+      document.getElementById('boton').addEventListener('click',(event) => {
+        console.log("hola");
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+          if (this.status == 200){
+              console.log("petición enviada con exito");
+            }
+        };
+        
+        var p = new FormData();
+        p.append('saludo',"hola");
+        xhttp.open("POST","/pruebas",true);
+        xhttp.send(p);
+
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<title>Perfil paciente</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+</style>
+<body class="w3-theme-l5">
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>IPS ACME</a>
+  <div class="w3-dropdown-hover w3-hide-small">
+    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+      <a href="#" class="w3-bar-item w3-button">Su cita fue agendada</a>
+      <a href="#" class="w3-bar-item w3-button">Su cita fue reprogramada</a>
+      <a href="#" class="w3-bar-item w3-button">Su cita fue cancelada</a>
+    </div>
+  </div>
+  <form method="post" action="{{ url_for('irCovid') }}">
+    <button class="w3-bar-item w3-button w3-padding-large w3-theme-d4"> COVID - 19</button>
+  </form>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="Cerrar sesión">
+    <form method="post" action="{{ url_for('logout') }}">
+      <button class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white">Cerrar sesión</button>
+    </form>
+  </a>
+ </div>
+</div>
+
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center">{{paciente.nombre}}</h4>
+         <p class="w3-center"><img src= https://i.pinimg.com/originals/60/99/f3/6099f305983371dadaceae99f5c905bf.png class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <hr>
+         <p><i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i>{{paciente.telefono}} </p>
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{paciente.direccion}}</p>
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> {{paciente.edad}}</p>
+         <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i> {{paciente.cedula}}</p>
+         <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i> {{paciente.correo}}</p>
+        </div>
+      </div>
+      <br>
+      
+      <!-- Accordion -->
+      <div class="w3-card w3-round">
+        <div class="w3-white">
+          <form method="post" action="{{ url_for('iragendarCita') }}">
+            <button class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Agendar cita médico general</button>
+          </form>
+          <div></div>
+          <form method="post" action="{{ url_for('iragendarCitaPsicologo') }}">
+            <button class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Agendar cita psicólogo</button>
+          </form>
+          <div></div>
+          <button type="button" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Cancelar cita</button>
+          <div></div>
+          <button type="button" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Reprogramar cita</button>
+          <div></div>
+          <button type="button" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Ver historial de citas</button>
+        </div>      
+      </div>
+      <br>
+      
+    <!-- End Left Column -->
+    </div>
+    
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+
+      <div class="w3-container w3-card w3-white w3-round w3-margin-right w3-margin-left"><br>
+        <img src= https://i.ibb.co/HFnnttD/Logo.png alt="-Logo" class="w3-right w3-square w3-margin-right " style="width:70px">
+        <h4>IPS ACME</h4>
+        <hr class="w3-clear">
+        <p>
+          Descripción general de la página y de la empresa.
+        <p>
+      </div>
+
+      <div class="w3-container w3-card w3-white w3-round w3-margin-right w3-margin-left w3-margin-top w3-margin-bottom"><br>
+        <img src= https://arandasoft.com/wp-content/uploads/2017/01/el-sector-de-la-salud-utiliza-la-tecnologia-para-emprender.png alt="-Logo" class= " w3-center w3-square w3-margin-bottom" style="width:680px;height:500px ;">
+      </div>
+
+
+      <div class="w3-container w3-card w3-white w3-round w3-margin-right w3-margin-left"><br>
+        <h4>Titulo sección</h4>
+        <hr class="w3-clear">
+        <p>
+          Hola Sr/a "NombrePaciente", bienvenido a la página de la IPS ACME. A través de esta página podrá acceder a diferentes servicios que ofrecemos a los pacientes.
+          Debajo de su información personal se presentan una serie de botones con los cuales ingresará a distintos apartados de la página. El primer botón es agendar cita, uselo en
+          caso de que quiera agendar una cita médica, una vez acceda debe ingresar datos relevantes para el registro de dicha cita. 
+        <p>
+        <p>
+          Si ya cuenta con una cita médica pero desea 
+          cancelarla debe dirigirse al botón de cancelar cita, tenga en cuenta que una vez cancelada su cita no podrá recuperarla. En caso de que no pueda asistir a una cita y desee
+          cambiar el día debe ingresar al apartado de reprogramar cita, en donde se cancelará la cita seleccionada y se le dará una cita nueva en el día de su preferencia.
+          Si desea ver el historial de sus citas médicas lo podrá hacer dirigiendose al apartado correspondiente, allí se le presentarán todas la citas que agendó y se mostrará 
+          las citas que canceló o reprogramó.
+        </p>
+      </div>
+      
+    <!-- End Middle Column -->
+    </div>
+    
+    <!-- Right Column -->
+    <div class="w3-col m2">
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Citas:</p>
+          {% for i in citas %}
+            <p>{{i.diaWeek}}, {{i.diaCalendar}}, {{i.hora}}</p>
+          {% endfor %}
+        </div>
+      </div>
+      <br>
+      
+      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+        <img src= https://i.ibb.co/YXqrFqm/Face.png alt="-Logo" class="w3-center w3-square w3-margin-right w3-margin-left" style="width:180px">
+      </div>
+      <br>
+      
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+<!-- End Page Container -->
+</div>
+<br>
+
+ 
+<script>
+// Accordion
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-theme-d1";
+  } else { 
+    x.className = x.className.replace("w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+  }
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html> 
