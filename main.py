@@ -39,6 +39,7 @@ class Paciente(db.Model):
 
     citas_agendadas = db.relationship("AgendarCita",back_populates="paciente")
     citas_agendadas_psicologia = db.relationship("AgendarCita_Psicologo",back_populates="paciente")
+    citas_canceladas = db.relationship("CancelarCita",back_populates="paciente")
 
 
 class Secretaria(db.Model):
@@ -59,6 +60,7 @@ class Medico(db.Model):
 
     horario = db.relationship("HorarioMedico", back_populates="medico")
     citas_agendadas = db.relationship("AgendarCita",back_populates="medico")
+    citas_canceladas = db.relationship("CancelarCita",back_populates="medico")
 
 
 class Psicologo(db.Model):
@@ -117,6 +119,20 @@ class HorarioPsicologo(db.Model):
     psicologo_id = db.Column(db.Integer, ForeignKey('psicologo.cedula'))
 
     psicologo = db.relationship("Psicologo",back_populates="horarioPsicologo")
+
+
+class CancelarCita(db.Model):
+    __tablename__ = "cancelarCita"
+    codigo = db.Column(db.Integer, primary_key =True)
+    diaCalendar = Column(db.Date, index=True)
+    diaWeek = db.Column(db.String(15),nullable =False)
+    hora = db.Column(db.String(15),nullable =False)
+    medico_id = db.Column(db.Integer, ForeignKey('medico.cedula'))
+    paciente_id = db.Column(db.Integer, ForeignKey('paciente.cedula'))
+    secretaria_id = db.Column(db.String(9), nullable = True)
+
+    medico = db.relationship("Medico",back_populates="citas_canceladas")
+    paciente = db.relationship("Paciente",back_populates="citas_canceladas")
 
 #------------------------------------
 
@@ -217,7 +233,7 @@ def registroPaciente():
 
     return render_template("registrar_paciente.html", session = condicion)
 
-@app.route("/registroSecretaria",methods=['GET','POST'])
+@app.route("/registroSecretaria/asdfQWER123",methods=['GET','POST'])
 def registroSecretaria():
     if request.method == 'POST':
         new_secretaria = Secretaria(nombre = request.form["nombre"],
@@ -478,7 +494,91 @@ def agendarCitaPsicologo():
 
     return render_template("agendar_cita_psicologo.html",horarios_psicologos = array_horarios_psicologos,citas_agendadas = array_citas_agendadas, paciente = paciente)
 
+@app.route("/cancelarCita",methods=['GET','POST'])
+def cancelarCita():
+    if request.method == 'POST':
+        cancelar_cita = request.form['codigo']
+        print(cancelar_cita)
 
+        cita = AgendarCita.query.filter_by(codigo = cancelar_cita).first()
+        print(cita.paciente)
+
+        
+        new_cita = CancelarCita(paciente = cita.paciente, 
+                                    medico = cita.medico, 
+                                    diaCalendar = cita.diaCalendar,
+                                    diaWeek = cita.diaWeek,
+                                    hora = cita.hora)
+        db.session.add(new_cita)
+        db.session.commit()
+
+        db.session.delete(cita)
+        db.session.commit()
+
+    
+        return '200'
+    
+    x = ""
+    paciente = Paciente.query.all()
+    array_pacientes = []
+    for i in range(len(paciente)):
+        array_pacientes.append({"nombre_paciente":paciente[i].nombre,
+                                "cedula_paciente":paciente[i].cedula
+        })
+
+    secretaria = Secretaria.query.all()
+    for i in session:
+        for k in paciente:
+            if session[i] == k.cedula:
+                print("paciente")
+                condicion = "paciente"
+                x = k.cedula
+        
+    
+    for i in session:
+        for k in secretaria:
+            if session[i] == k.cedula:
+                print("secretaria")
+                condicion = "secretaria"
+                
+    array_citas_canceladas = []
+
+    citas_canceladas = AgendarCita.query.all()     
+    for i in range(len(citas_canceladas)):
+        array_citas_canceladas.append({"diaCalendar":citas_canceladas[i].diaCalendar,
+                                        "codigo":citas_canceladas[i].codigo,
+                                        "diaWeek":citas_canceladas[i].diaWeek,
+                                        "hora":citas_canceladas[i].hora,
+                                        "nombre_medico":citas_canceladas[i].medico.nombre,
+                                        "cedula_medico":citas_canceladas[i].medico.cedula,
+                                        "paciente_cedula":citas_canceladas[i].paciente.cedula})
+
+    
+  
+    
+
+    return render_template("cancelar_cita.html",citas_canceladas = array_citas_canceladas, condicion = condicion, pacientes = array_pacientes, x = x) 
+
+@app.route("/historialCita",methods=['GET','POST'])
+def historial_cita():
+    if request.method == 'POST':
+
+        return redirect("/")
+    
+
+    citas_agendadas = AgendarCita.query.filter_by(paciente_id = session["cedula_paciente"]).all()
+    array_citas_agendadas = []
+    for i in range(len(citas_agendadas)):
+        array_citas_agendadas.append({"diaCalendar":citas_agendadas[i].diaCalendar,
+                                        "diaWeek":citas_agendadas[i].diaWeek,
+                                        "codigo":citas_agendadas[i].codigo,
+                                        "hora":citas_agendadas[i].hora,
+                                        "nombre_medico":citas_agendadas[i].medico.nombre,
+                                        "cedula_medico":citas_agendadas[i].medico.cedula,
+                                        "paciente":citas_agendadas[i].paciente.nombre})
+    
+
+    return render_template("historial_cita.html",citas_agendadas = array_citas_agendadas) 
 
 
 
@@ -548,6 +648,16 @@ def irCovid():
 def irRegistrosPaciente():
     if request.method == "POST":
         return redirect("/registroPaciente")
+
+@app.route("/ircancelarCita",methods=["GET","POST"])
+def ircancelarCita():
+    if request.method == "POST":
+        return redirect("/cancelarCita")
+
+@app.route("/irhistorialCita",methods=["GET","POST"])
+def irhistorialCita():
+    if request.method == "POST":
+        return redirect("/historialCita")
 #------------------------------------
 
 
