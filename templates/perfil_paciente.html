@@ -69,11 +69,15 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             <button class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Agendar cita psicólogo</button>
           </form>
           <div></div>
-          <button type="button" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Cancelar cita</button>
+          <form method="post" action="{{ url_for('ircancelarCita') }}">
+            <button class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Cancelar cita</button>
+          </form>
           <div></div>
           <button type="button" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Reprogramar cita</button>
           <div></div>
-          <button type="button" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Ver historial de citas</button>
+          <form method="post" action="{{ url_for('irhistorialCita') }}">
+            <button class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Ver historial de citas</button>
+          </form>
         </div>      
       </div>
       <br>
